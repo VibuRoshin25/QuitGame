@@ -23,41 +23,45 @@ const CompanionApp = () => {
   ];
 
   const moods = [
-    { id: 'great', emoji: '😊', label: 'Great', color: 'text-green-400' },
-    { id: 'good', emoji: '🙂', label: 'Good', color: 'text-blue-400' },
-    { id: 'okay', emoji: '😐', label: 'Okay', color: 'text-yellow-400' },
-    { id: 'struggling', emoji: '😔', label: 'Struggling', color: 'text-orange-400' },
-    { id: 'difficult', emoji: '😰', label: 'Difficult', color: 'text-red-400' }
+    { id: 'great', image: '/src/assets/sm1.jpg', label: 'Great', color: 'text-gray-300' },
+    { id: 'good', image: '/src/assets/sm2.jpg', label: 'Good', color: 'text-gray-400' },
+    { id: 'okay', image: '/src/assets/sm5.jpg', label: 'Okay', color: 'text-gray-500' },
+    { id: 'struggling', image: '/src/assets/sm7.jpg', label: 'Struggling', color: 'text-gray-600' },
+    { id: 'difficult', image: '/src/assets/sm1.jpg', label: 'Difficult', color: 'text-gray-700' }
   ];
 
   const renderHome = () => (
     <div className="space-y-6">
       {/* Streak Display */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-green-500/30 shadow-2xl shadow-green-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute top-2 right-2 text-3xl opacity-10">👻</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute top-2 right-2 w-12 h-12 opacity-20">
+          <img src="/src/assets/sm1.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
         <div className="text-center">
-          <div className="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/50">
-            <Heart className="w-10 h-10 text-white" />
+          <div className="w-20 h-20 bg-gradient-to-r from-gray-700 to-black rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-black/50 border border-gray-600">
+            <Heart className="w-10 h-10 text-gray-300" />
           </div>
-          <h2 className="text-3xl font-bold text-white mb-2 drop-shadow-lg">18 Days</h2>
-          <p className="text-green-300 mb-4 drop-shadow-lg">Smoke-free streak! 🎉</p>
-          <div className="bg-black/60 rounded-lg p-3 border border-white/10">
-            <p className="text-sm text-gray-400">Next milestone in 7 days</p>
-            <div className="w-full bg-gray-800 rounded-full h-2 mt-2 border border-gray-600/30">
-              <div className="bg-gradient-to-r from-green-400 to-emerald-500 h-2 rounded-full shadow-lg shadow-green-400/30" style={{ width: '72%' }}></div>
+          <h2 className="text-3xl font-bold text-gray-100 mb-2 drop-shadow-2xl">18 Days</h2>
+          <p className="text-gray-400 mb-4 drop-shadow-lg">Smoke-free streak!</p>
+          <div className="bg-black/80 rounded-lg p-3 border border-gray-700/30">
+            <p className="text-sm text-gray-500">Next milestone in 7 days</p>
+            <div className="w-full bg-gray-900 rounded-full h-2 mt-2 border border-gray-700/50">
+              <div className="bg-gradient-to-r from-gray-600 to-gray-400 h-2 rounded-full shadow-lg shadow-gray-500/30" style={{ width: '72%' }}></div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Mood Tracker */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/30 shadow-2xl shadow-purple-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute bottom-2 left-2 text-2xl opacity-10">👾</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute bottom-2 left-2 w-8 h-8 opacity-15">
+          <img src="/src/assets/sm2.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
-        <h3 className="text-lg font-bold text-white mb-4">How are you feeling today?</h3>
+        <h3 className="text-lg font-bold text-gray-100 mb-4">How are you feeling today?</h3>
         <div className="grid grid-cols-5 gap-3">
           {moods.map((mood) => (
             <button
@@ -65,11 +69,13 @@ const CompanionApp = () => {
               onClick={() => setSelectedMood(mood.id)}
               className={`p-3 rounded-lg border transition-all duration-200 ${
                 selectedMood === mood.id
-                  ? 'bg-white/20 border-white/30 scale-105 shadow-lg shadow-purple-500/30'
-                  : 'bg-black/40 border-white/10 hover:border-cyan-500/30'
+                  ? 'bg-gray-800/50 border-gray-600/50 scale-105 shadow-lg shadow-black/50'
+                  : 'bg-black/60 border-gray-700/30 hover:border-gray-600/50'
               }`}
             >
-              <div className="text-2xl mb-1">{mood.emoji}</div>
+              <div className="w-8 h-8 mb-1 mx-auto">
+                <img src={mood.image} alt="Mood" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+              </div>
               <div className={`text-xs font-medium ${mood.color}`}>{mood.label}</div>
             </button>
           ))}
@@ -77,35 +83,37 @@ const CompanionApp = () => {
       </div>
 
       {/* Daily Checklist */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-blue-500/30 shadow-2xl shadow-blue-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute top-2 right-2 text-2xl opacity-10">🧛</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute top-2 right-2 w-8 h-8 opacity-15">
+          <img src="/src/assets/sm5.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
-        <h3 className="text-lg font-bold text-white mb-4">Daily Checklist</h3>
+        <h3 className="text-lg font-bold text-gray-100 mb-4">Daily Checklist</h3>
         <div className="space-y-3">
           {dailyTasks.map((task) => (
             <div
               key={task.id}
               className={`p-3 rounded-lg border transition-all duration-200 ${
                 task.completed
-                  ? 'bg-green-500/20 border-green-500/30 shadow-lg shadow-green-500/20'
-                  : 'bg-black/40 border-white/10'
+                  ? 'bg-gray-800/50 border-gray-600/50 shadow-lg shadow-black/30'
+                  : 'bg-black/60 border-gray-700/30'
               }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                    task.completed ? 'bg-green-500 shadow-lg shadow-green-500/50' : 'bg-gray-700'
-                  } border border-white/20`}>
-                    {task.completed && <CheckCircle className="w-4 h-4 text-white" />}
+                    task.completed ? 'bg-gray-600 shadow-lg shadow-black/50' : 'bg-gray-800'
+                  } border border-gray-600/50`}>
+                    {task.completed && <CheckCircle className="w-4 h-4 text-gray-200" />}
                   </div>
-                  <span className={`${task.completed ? 'text-green-300' : 'text-white'}`}>
+                  <span className={`${task.completed ? 'text-gray-300' : 'text-gray-200'}`}>
                     {task.title}
                   </span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Star className="w-4 h-4 text-yellow-300 drop-shadow-lg" />
-                  <span className="text-yellow-300 text-sm drop-shadow-lg">{task.points}</span>
+                  <Star className="w-4 h-4 text-gray-400 drop-shadow-lg" />
+                  <span className="text-gray-300 text-sm drop-shadow-lg">{task.points}</span>
                 </div>
               </div>
             </div>
@@ -118,75 +126,93 @@ const CompanionApp = () => {
   const renderCoach = () => (
     <div className="space-y-6">
       {/* AI Coach Header */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-indigo-500/30 shadow-2xl shadow-indigo-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute top-2 right-2 text-3xl opacity-10">🤖</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute top-2 right-2 w-12 h-12 opacity-20">
+          <img src="/src/assets/sm7.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/50">
-            <MessageCircle className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-gradient-to-r from-gray-700 to-black rounded-full flex items-center justify-center shadow-lg shadow-black/50 border border-gray-600">
+            <MessageCircle className="w-8 h-8 text-gray-300" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white drop-shadow-lg">AI Coach Maya</h2>
-            <p className="text-cyan-300">Your personal quit companion</p>
+            <h2 className="text-xl font-bold text-gray-100 drop-shadow-2xl">AI Coach Maya</h2>
+            <p className="text-gray-400">Your personal quit companion</p>
           </div>
         </div>
       </div>
 
       {/* Coach Messages */}
       <div className="space-y-4">
-        <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-4 border border-green-500/30 shadow-lg shadow-green-500/20">
+        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-4 border border-gray-700/50 shadow-lg shadow-black/30">
           <div className="flex items-start space-x-3">
-            <div className="text-2xl">🎉</div>
+            <div className="w-8 h-8">
+              <img src="/src/assets/sm1.jpg" alt="Achievement" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div>
-              <h4 className="text-green-300 font-bold drop-shadow-lg">Congratulations!</h4>
-              <p className="text-white text-sm">You've unlocked the "Craving Resistance" badge! Your 18-day streak shows incredible determination.</p>
+              <h4 className="text-gray-300 font-bold drop-shadow-lg">Congratulations!</h4>
+              <p className="text-gray-200 text-sm">You've unlocked the "Craving Resistance" badge! Your 18-day streak shows incredible determination.</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-4 border border-cyan-500/30 shadow-lg shadow-cyan-500/20">
+        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-4 border border-gray-700/50 shadow-lg shadow-black/30">
           <div className="flex items-start space-x-3">
-            <div className="text-2xl">💡</div>
+            <div className="w-8 h-8">
+              <img src="/src/assets/sm2.jpg" alt="Tip" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div>
-              <h4 className="text-cyan-300 font-bold drop-shadow-lg">Tip of the Day</h4>
-              <p className="text-white text-sm">When cravings hit, try the 4-7-8 breathing technique: Inhale for 4, hold for 7, exhale for 8. It activates your body's relaxation response!</p>
+              <h4 className="text-gray-300 font-bold drop-shadow-lg">Tip of the Day</h4>
+              <p className="text-gray-200 text-sm">When cravings hit, try the 4-7-8 breathing technique: Inhale for 4, hold for 7, exhale for 8. It activates your body's relaxation response!</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-4 border border-purple-500/30 shadow-lg shadow-purple-500/20">
+        <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-4 border border-gray-700/50 shadow-lg shadow-black/30">
           <div className="flex items-start space-x-3">
-            <div className="text-2xl">📊</div>
+            <div className="w-8 h-8">
+              <img src="/src/assets/sm5.jpg" alt="Progress" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div>
-              <h4 className="text-purple-300 font-bold drop-shadow-lg">Progress Insight</h4>
-              <p className="text-white text-sm">Your mood has been consistently positive this week! This is a strong indicator that your quit journey is on the right track.</p>
+              <h4 className="text-gray-300 font-bold drop-shadow-lg">Progress Insight</h4>
+              <p className="text-gray-200 text-sm">Your mood has been consistently positive this week! This is a strong indicator that your quit journey is on the right track.</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-gray-500/30 shadow-2xl shadow-gray-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute bottom-2 right-2 text-2xl opacity-10">👹</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute bottom-2 right-2 w-8 h-8 opacity-15">
+          <img src="/src/assets/sm7.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
-        <h3 className="text-lg font-bold text-white mb-4">Quick Support</h3>
+        <h3 className="text-lg font-bold text-gray-100 mb-4">Quick Support</h3>
         <div className="grid grid-cols-2 gap-3">
-          <button className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 hover:bg-red-500/30 transition-colors shadow-lg shadow-red-500/20">
-            <div className="text-2xl mb-1">🆘</div>
+          <button className="p-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-gray-300 hover:bg-gray-700/50 transition-colors shadow-lg shadow-black/30">
+            <div className="w-8 h-8 mb-1 mx-auto">
+              <img src="/src/assets/sm1.jpg" alt="Help" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div className="text-sm font-medium">Craving Help</div>
           </button>
-          <button className="p-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-cyan-300 hover:bg-blue-500/30 transition-colors shadow-lg shadow-blue-500/20">
-            <div className="text-2xl mb-1">🧘</div>
+          <button className="p-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-gray-300 hover:bg-gray-700/50 transition-colors shadow-lg shadow-black/30">
+            <div className="w-8 h-8 mb-1 mx-auto">
+              <img src="/src/assets/sm2.jpg" alt="Meditation" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div className="text-sm font-medium">Meditation</div>
           </button>
-          <button className="p-3 bg-green-500/20 border border-green-500/30 rounded-lg text-green-300 hover:bg-green-500/30 transition-colors shadow-lg shadow-green-500/20">
-            <div className="text-2xl mb-1">💬</div>
+          <button className="p-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-gray-300 hover:bg-gray-700/50 transition-colors shadow-lg shadow-black/30">
+            <div className="w-8 h-8 mb-1 mx-auto">
+              <img src="/src/assets/sm5.jpg" alt="Chat" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div className="text-sm font-medium">Chat with Maya</div>
           </button>
-          <button className="p-3 bg-purple-500/20 border border-purple-500/30 rounded-lg text-purple-300 hover:bg-purple-500/30 transition-colors shadow-lg shadow-purple-500/20">
-            <div className="text-2xl mb-1">📱</div>
+          <button className="p-3 bg-gray-800/50 border border-gray-600/50 rounded-lg text-gray-300 hover:bg-gray-700/50 transition-colors shadow-lg shadow-black/30">
+            <div className="w-8 h-8 mb-1 mx-auto">
+              <img src="/src/assets/sm7.jpg" alt="Call" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+            </div>
             <div className="text-sm font-medium">Call Sponsor</div>
           </button>
         </div>
@@ -196,30 +222,34 @@ const CompanionApp = () => {
 
   const renderQuests = () => (
     <div className="space-y-6">
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-6 border border-yellow-500/30 shadow-2xl shadow-yellow-500/20 relative overflow-hidden">
-        {/* Monster decoration */}
-        <div className="absolute top-2 right-2 text-3xl opacity-10">🐉</div>
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-2xl shadow-black/50 relative overflow-hidden">
+        {/* Terrifying Monster decoration */}
+        <div className="absolute top-2 right-2 w-12 h-12 opacity-20">
+          <img src="/src/assets/sm1.jpg" alt="Monster" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+        </div>
         
-        <h2 className="text-xl font-bold text-white mb-2 drop-shadow-lg">Quest Board</h2>
-        <p className="text-yellow-300 drop-shadow-lg">Complete micro-tasks to earn points and build healthy habits!</p>
+        <h2 className="text-xl font-bold text-gray-100 mb-2 drop-shadow-2xl">Quest Board</h2>
+        <p className="text-gray-400 drop-shadow-lg">Complete micro-tasks to earn points and build healthy habits!</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
         {microTasks.map((task) => (
           <div
             key={task.id}
-            className="bg-black/60 backdrop-blur-lg rounded-xl p-4 border border-white/10 hover:border-cyan-500/30 transition-all duration-200 shadow-lg shadow-black/50"
+            className="bg-black/80 backdrop-blur-lg rounded-xl p-4 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-200 shadow-lg shadow-black/50"
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="text-3xl">{task.icon}</div>
+              <div className="w-10 h-10">
+                <img src="/src/assets/sm2.jpg" alt="Quest" className="w-full h-full object-cover rounded filter grayscale contrast-125" />
+              </div>
               <div className="flex items-center space-x-2">
-                <Star className="w-4 h-4 text-yellow-300 drop-shadow-lg" />
-                <span className="text-yellow-300 font-bold drop-shadow-lg">{task.points}</span>
+                <Star className="w-4 h-4 text-gray-400 drop-shadow-lg" />
+                <span className="text-gray-300 font-bold drop-shadow-lg">{task.points}</span>
               </div>
             </div>
-            <h4 className="text-white font-medium mb-1">{task.title}</h4>
-            <p className="text-gray-500 text-sm mb-3">{task.duration}</p>
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2 rounded-lg transition-all duration-200 shadow-lg shadow-purple-500/30 border border-purple-400/30">
+            <h4 className="text-gray-200 font-medium mb-1">{task.title}</h4>
+            <p className="text-gray-600 text-sm mb-3">{task.duration}</p>
+            <button className="w-full bg-gradient-to-r from-gray-700 to-black hover:from-gray-600 hover:to-gray-900 text-gray-200 font-medium py-2 rounded-lg transition-all duration-200 shadow-lg shadow-black/50 border border-gray-600/50">
               Start Quest
             </button>
           </div>
@@ -231,7 +261,7 @@ const CompanionApp = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Tab Navigation */}
-      <div className="bg-black/80 backdrop-blur-lg rounded-2xl p-2 mb-8 border border-white/20 shadow-2xl shadow-black/50">
+      <div className="bg-black/90 backdrop-blur-lg rounded-2xl p-2 mb-8 border border-gray-700/50 shadow-2xl shadow-black/50">
         <div className="flex space-x-2">
           {[
             { id: 'home', label: 'Home', icon: Heart },
@@ -245,8 +275,8 @@ const CompanionApp = () => {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center space-x-2 px-4 py-3 rounded-xl transition-all duration-200 flex-1 justify-center ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
-                    : 'text-gray-300 hover:text-white hover:bg-white/10 hover:border-cyan-500/30'
+                    ? 'bg-gradient-to-r from-gray-700 to-black text-gray-200 shadow-lg shadow-black/50 border border-gray-600/50'
+                    : 'text-gray-400 hover:text-gray-200 hover:bg-gray-800/30 hover:border-gray-600/50'
                 }`}
               >
                 <Icon className="w-4 h-4" />
